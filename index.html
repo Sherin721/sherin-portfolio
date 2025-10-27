@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sherin XK - Portfolio</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+</head>
+<body class="bg-cyan-50 text-black scroll-smooth dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- Navbar -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-4">
+      <!-- Logo + Name -->
+      <div class="flex items-center space-x-3">
+        <img src="logo.jpeg" alt="Logo" class="h-8 w-8 rounded-full">
+        <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">Sherin XK</span>
+      </div>
+      <!-- Nav links -->
+      <nav class="flex items-center space-x-4 md:space-x-8 text-cyan-600 dark:text-cyan-400 font-semibold">
+        <a href="#home" class="hover:text-cyan-800 dark:hover:text-cyan-200 transition">Home</a>
+        <a href="#work" class="hover:text-cyan-800 dark:hover:text-cyan-200 transition">Work</a>
+        <a href="#courses" class="hover:text-cyan-800 dark:hover:text-cyan-200 transition">Education</a>
+        <a href="#contact" class="hover:text-cyan-800 dark:hover:text-cyan-200 transition">Contact</a>
+        <a href="#resume" class="hover:text-cyan-800 dark:hover:text-cyan-200 transition">Resume</a>
+        <!-- Dark Mode Toggle Button -->
+        <button id="theme" class="ml-2 px-4 py-2 rounded-lg bg-cyan-500 text-white font-medium hover:bg-cyan-600 transition">
+          Dark
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home -->
+  <section id="home"
+    class="h-screen bg-cover bg-center flex items-center justify-center relative"
+    style="background-image: url('landscape.jpg');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-white/40 dark:bg-black/50"></div>
+    <!-- Intro -->
+    <div class="relative z-10 text-center text-cyan-700 dark:text-cyan-200 px-4">
+      <h2 class="text-6xl font-bold mb-4">Sherin XK</h2>
+      <p class="text-2xl">A passionate <b>Web Developer</b> building modern, responsive applications.</p>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="min-h-screen flex items-center justify-center px-4 py-20 bg-cyan-50 dark:bg-gray-900">
+    <div class="max-w-6xl w-full mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-12 text-cyan-700 dark:text-cyan-300">My Work</h2>
+      <!-- Projects Grid -->
+      <div class="grid md:grid-cols-3 gap-8 py-6 px-4">
+        <!-- Project Cards -->
+        <div class="flex flex-col items-center p-6 rounded-2xl shadow-lg bg-white dark:bg-gray-800 border-t-4 border-cyan-400 hover:bg-cyan-100 dark:hover:bg-gray-700 hover:scale-105 transition-transform">
+          <h3 class="text-2xl font-semibold text-cyan-600 dark:text-cyan-300 mb-2">Responsive Layout</h3>
+          <p class="text-gray-700 dark:text-gray-300">A layout built with HTML, Tailwind CSS, JS showing responsive design.</p>
+        </div>
+        <div class="flex flex-col items-center p-6 rounded-2xl shadow-lg bg-white dark:bg-gray-800 border-t-4 border-cyan-500 hover:bg-cyan-100 dark:hover:bg-gray-700 hover:scale-105 transition-transform">
+          <h3 class="text-2xl font-semibold text-cyan-600 dark:text-cyan-300 mb-2">Grid and Flexbox</h3>
+          <p class="text-gray-700 dark:text-gray-300">Online shop UI concept with shopping cart using HTML and Tailwind CSS.</p>
+        </div>
+        <div class="flex flex-col items-center p-6 rounded-2xl shadow-lg bg-white dark:bg-gray-800 border-t-4 border-cyan-600 hover:bg-cyan-100 dark:hover:bg-gray-700 hover:scale-105 transition-transform">
+          <h3 class="text-2xl font-semibold text-cyan-600 dark:text-cyan-300 mb-2">Portfolio Website</h3>
+          <p class="text-gray-700 dark:text-gray-300">Front-end developer portfolio with creative and responsive designs.</p>
+        </div>
+      </div>
+      <a href="https://github.com/Sherin721" target="_blank"
+         class="inline-block px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-lg shadow-md transition mt-6">Visit My GitHub</a>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses" class="min-h-screen flex items-center justify-center px-4 py-20 bg-cyan-100 dark:bg-gray-900">
+    <div class="max-w-4xl w-full mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-6 text-cyan-600 dark:text-cyan-400">Education</h2>
+      <!-- Simple Table -->
+      <div class="overflow-x-auto px-4 py-10">
+        <table class="min-w-full border border-cyan-300 text-center">
+          <thead class="bg-cyan-500 text-white">
+            <tr>
+              <th class="px-6 py-3 border border-cyan-300">S.No</th>
+              <th class="px-6 py-3 border border-cyan-300">Course</th>
+              <th class="px-6 py-3 border border-cyan-300">Duration</th>
+              <th class="px-6 py-3 border border-cyan-300">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-900 dark:text-gray-100">
+            <tr class="bg-cyan-50 dark:bg-gray-800">
+              <td class="px-6 py-3 border border-cyan-300">1</td>
+              <td class="px-6 py-3 border border-cyan-300">SSLC</td>
+              <td class="px-6 py-3 border border-cyan-300">2018-2019</td>
+              <td class="px-6 py-3 border border-cyan-300">90.5%</td>
+            </tr>
+            <tr class="bg-cyan-100 dark:bg-gray-700">
+              <td class="px-6 py-3 border border-cyan-300">2</td>
+              <td class="px-6 py-3 border border-cyan-300">HSC</td>
+              <td class="px-6 py-3 border border-cyan-300">2020-2021</td>
+              <td class="px-6 py-3 border border-cyan-300">88.5%</td>
+            </tr>
+            <tr class="bg-cyan-50 dark:bg-gray-800">
+              <td class="px-6 py-3 border border-cyan-300">3</td>
+              <td class="px-6 py-3 border border-cyan-300">B.Sc.Computer Science</td>
+              <td class="px-6 py-3 border border-cyan-300">2021-2024</td>
+              <td class="px-6 py-3 border border-cyan-300">8.5</td>
+            </tr>
+            <tr class="bg-cyan-100 dark:bg-gray-700">
+              <td class="px-6 py-3 border border-cyan-300">4</td>
+              <td class="px-6 py-3 border border-cyan-300">DCA</td>
+              <td class="px-6 py-3 border border-cyan-300">2024-2025</td>
+              <td class="px-6 py-3 border border-cyan-300">8.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-lg text-gray-800 dark:text-gray-200 mt-4">
+        I am currently learning ReactJS, NestJS, Express.js, Tailwind CSS and MongoDB.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="min-h-screen flex items-center justify-center px-4 py-20 bg-cyan-50 dark:bg-cyan-900">
+    <div class="max-w-5xl w-full mx-auto">
+      <h2 class="text-4xl font-bold mb-8 text-center text-cyan-600 dark:text-cyan-300">Contact Me</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <!-- Contact Info -->
+        <div class="space-y-4 text-gray-900 dark:text-gray-100">
+          <p><span class="font-semibold text-cyan-600 dark:text-cyan-400">Address:</span> Marthandam, TamilNadu, India.</p>
+          <p><span class="font-semibold text-cyan-600 dark:text-cyan-400">Phone:</span> +91 94878 45908</p>
+          <p><span class="font-semibold text-cyan-600 dark:text-cyan-400">Email:</span> sherinxavier004@gmail.com</p>
+        </div>
+        <!-- Social Links -->
+        <div class="space-y-4 text-gray-900 dark:text-gray-100">
+          <a href="https://instagram.com/xii.i.mmiv_" target="_blank" class="block text-cyan-600 dark:text-cyan-400 hover:underline">Instagram</a>
+          <a href="https://linkedin.com/in/sherin-xavier" target="_blank" class="block text-cyan-600 dark:text-cyan-400 hover:underline">LinkedIn</a>
+        </div>
+      </div>
+      <!-- Contact Form + Map -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Contact Form -->
+        <form class="space-y-4">
+          <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+          <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+          <textarea placeholder="Your Message" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"></textarea>
+          <button class="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg">Send</button>
+        </form>
+        <!-- Google Map -->
+        <div class="h-96 rounded-lg overflow-hidden shadow-lg">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.2078123982783!2d77.21401457042879!3d8.28210528203052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0455005d2a8095%3A0x93a6afe53b22213f!2sMavilai!5e0!3m2!1sen!2sin!4v1756647140272!5m2!1sen!2sin"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Google Map"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-100 dark:bg-gray-800">
+    <h2 class="text-4xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">Resume</h2>
+    <p class="text-lg mb-4 text-gray-700 dark:text-gray-300">Download my resume as PDF below:</p>
+    <a href="resume.pdf" download class="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg shadow-md">Download Resume</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-cyan-600 dark:bg-gray-800 text-white text-center py-4">
+    <p>© 2025 Sherin XK. All rights reserved.</p>
+  </footer>
+
+  <!-- Dark Mode Script -->
+  <script>
+    const toggle = document.getElementById('theme');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      toggle.textContent = document.documentElement.classList.contains('dark') ? 'Light' : 'Dark';
+    });
+  </script>
+</body>
+</html>
