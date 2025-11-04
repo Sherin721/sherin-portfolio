@@ -14,13 +14,19 @@
 </script>
 
   <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+}
+
     /* page transition + smooth theme */
     html { transition: background-color 0.45s ease, color 0.45s ease; }
     body { padding-top: 80px; scroll-behavior: smooth; }
-
     /* NAVBAR scroll/shrink */
-    /* NAVBAR scroll/shrink */
+    
 #navbar {
+  margin-top: 0;
+  padding-top: 0.5rem;
   transition: all 0.35s ease;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
@@ -87,22 +93,34 @@
     .btn-primary:hover { background-color:#0891b2; }
 
     /* responsive tweaks */
-    @media (max-width: 768px) {
-  #menu {
-    flex-direction: column;
+    /* === Mobile nav layout fix === */
+@media (max-width: 768px) {
+  #nav-links {
+    flex-direction: column !important;
     align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.95);
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    padding: 1rem 0;
     gap: 1rem;
+    padding: 1rem 0;
     border-radius: 0 0 1rem 1rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: scaleY(0);
+    opacity: 0;
+    display: none;
   }
-  .dark #menu {
-    background: rgba(17, 24, 39, 0.95); /* dark mode bg */
+
+  #nav-links.open {
+    display: flex !important;
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  .dark #nav-links {
+    background: rgba(17, 24, 39, 0.95);
   }
 }
 
@@ -304,6 +322,36 @@
         <div class="mt-10 text-center">
           <h3 class="text-2xl font-semibold mb-4 text-cyan-600 dark:text-cyan-300">My Location</h3>
           <div class="rounded-lg overflow-hidden shadow-lg">
+            <!-- social links -->
+<div class="flex justify-center gap-6 mt-8">
+  <a href="https://www.linkedin.com/in/sherinxk" target="_blank" class="flex items-center gap-2 text-cyan-600 dark:text-cyan-300 hover:underline">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+      <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 
+               0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97
+               0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 
+               1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.27h-3v-5.5c0-1.31-.03-3-1.83-3-1.83
+               0-2.11 1.43-2.11 2.9v5.6h-3v-10h2.88v1.37h.04c.4-.76 
+               1.38-1.55 2.84-1.55 3.04 0 3.6 2 3.6 4.6v5.6z"/>
+    </svg>
+    <span>LinkedIn</span>
+  </a>
+
+  <a href="https://github.com/Sherin721" target="_blank" class="flex items-center gap-2 text-cyan-600 dark:text-cyan-300 hover:underline">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+      <path d="M12 .5C5.73.5.5 5.73.5 12.02c0 5.1 3.29 9.42 
+               7.86 10.95.58.1.79-.25.79-.55v-2.1c-3.2.7-3.88-1.54-3.88-1.54-.52-1.3-1.27-1.64-1.27-1.64-1.04-.7.08-.68.08-.68 
+               1.15.08 1.75 1.18 1.75 1.18 1.03 1.75 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.73 
+               0-1.26.45-2.28 1.18-3.08-.12-.29-.52-1.46.1-3.05 0 0 
+               .97-.31 3.18 1.18a11 11 0 0 1 2.9-.39c.98 0 1.96.13 
+               2.9.39 2.2-1.5 3.17-1.18 3.17-1.18.62 1.6.22 2.77.1 
+               3.05.74.8 1.18 1.82 1.18 3.08 0 4.46-2.68 5.43-5.24 
+               5.72.41.36.78 1.08.78 2.19v3.24c0 .3.21.65.79.55A10.53 
+               10.53 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
+    </svg>
+    <span>GitHub</span>
+  </a>
+</div>
+
             <!-- embed your map URL (kept responsive) -->
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.2078123982783!2d77.21401457042879!3d8.28210528203052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0455005d2a8095%3A0x93a6afe53b22213f!2sMavilai!5e0!3m2!1sen!2sin!4v1756647140272"
