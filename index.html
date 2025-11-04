@@ -11,24 +11,12 @@
   </script>
 
   <style>
-  /* Prevent content from hiding under fixed navbar */
   body {
     padding-top: 80px;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 
-  /* Slide-down animation for mobile menu */
-  #nav-links {
-    transform-origin: top;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  }
-
-  #nav-links.open {
-    display: flex !important;
-    transform: scaleY(1);
-    opacity: 1;
-  }
-
-  /* Scroll effect — shrink + color */
+  /* Navbar */
   #navbar.scrolled {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
@@ -36,240 +24,174 @@
     padding-bottom: 0.5rem;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   }
-
   #navbar.scrolled.dark {
     background-color: rgba(17, 24, 39, 0.95);
   }
-
   #navbar.scrolled img {
     transform: scale(0.9);
   }
-</style>
+
+  /* Mobile Nav Animation */
+  #nav-links {
+    transform-origin: top;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  #nav-links.open {
+    display: flex !important;
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  /* Dark/Light toggle pop */
+  #theme.animate {
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+  }
+
+  /* Page fade-slide wrapper */
+  #page-transition {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  #page-transition.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Fade-slide sections */
+  .fade-slide {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .fade-slide.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-slide:nth-child(2) { transition-delay: 0.1s; }
+  .fade-slide:nth-child(3) { transition-delay: 0.2s; }
+  .fade-slide:nth-child(4) { transition-delay: 0.3s; }
+  .fade-slide:nth-child(5) { transition-delay: 0.4s; }
+
+  /* Hero text animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+  }
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  </style>
 </head>
 
-<body class="bg-cyan-50 text-black scroll-smooth dark:bg-gray-900 dark:text-gray-100">
+<body class="bg-cyan-50 text-black dark:bg-gray-900 dark:text-gray-100 scroll-smooth">
+  <div id="page-transition">
 
   <!-- Navbar -->
-<header id="navbar" class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg shadow-md z-50 transition-all duration-300">
-  <div class="container mx-auto flex items-center justify-between px-6 py-4 md:py-5 max-w-7xl">
-    <!-- Logo + Name -->
-    <div class="flex items-center space-x-3">
-      <img src="logo.jpeg" alt="Logo" class="h-8 w-8 transition-transform duration-300" id="nav-logo" />
-      <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">Sherin XK</span>
-    </div>
+  <header id="navbar" class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg shadow-md z-50 transition-all duration-300">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4 md:py-5 max-w-7xl">
+      <div class="flex items-center space-x-3">
+        <img src="logo.jpeg" alt="Logo" class="h-8 w-8 transition-transform duration-300" />
+        <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">Sherin XK</span>
+      </div>
 
-    <!-- Hamburger Icon (Mobile) -->
-    <button id="menu-btn" class="md:hidden text-cyan-600 dark:text-cyan-400 focus:outline-none">
-      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-        stroke-width="2" stroke="currentColor" class="w-7 h-7">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-
-    <!-- Nav links -->
-    <nav id="nav-links"
-      class="hidden md:flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-cyan-600 dark:text-cyan-400 font-semibold absolute md:static left-0 top-full w-full md:w-auto bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg md:backdrop-blur-none shadow-md md:shadow-none px-6 py-4 md:p-0 transition-all duration-300 ease-in-out transform origin-top scale-y-0 md:scale-y-100 md:opacity-100">
-      <a href="#home" class="hover:text-cyan-800 dark:hover:text-cyan-200">Home</a>
-      <a href="#about" class="hover:text-cyan-800 dark:hover:text-cyan-200">About</a>
-      <a href="#skills" class="hover:text-cyan-800 dark:hover:text-cyan-200">Skills</a>
-      <a href="#work" class="hover:text-cyan-800 dark:hover:text-cyan-200">Projects</a>
-      <a href="#experience" class="hover:text-cyan-800 dark:hover:text-cyan-200">Experience</a>
-      <a href="#education" class="hover:text-cyan-800 dark:hover:text-cyan-200">Education</a>
-      <a href="#contact" class="hover:text-cyan-800 dark:hover:text-cyan-200">Contact</a>
-      <a href="#resume" class="hover:text-cyan-800 dark:hover:text-cyan-200">Resume</a>
-      <button id="theme"
-        class="mt-2 md:mt-0 px-4 py-2 rounded-lg bg-cyan-600 text-white font-medium hover:bg-cyan-700 transition">
-        Dark
+      <button id="menu-btn" class="md:hidden text-cyan-600 dark:text-cyan-400 focus:outline-none">
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke-width="2" stroke="currentColor" class="w-7 h-7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
       </button>
-    </nav>
-  </div>
-</header>
 
-  <!-- Home -->
-  <section id="home" class="h-screen bg-cover bg-center flex items-center justify-center relative" style="background-image: url('landscape.jpg');">
-    <div class="absolute inset-0 bg-white/40 dark:bg-black/50"></div>
-    <div class="relative z-10 text-center text-cyan-700 dark:text-cyan-200 px-6 hero-text">
-      <h1 class="text-5xl sm:text-6xl font-extrabold text-cyan-700 dark:text-cyan-200">Hi, I'm Sherin XK</h1>
-      <p class="mt-4 text-xl text-gray-700 dark:text-gray-300">
-        Frontend Engineer (React + JavaScript)
-      </p>
-      <div class="mt-6 flex justify-center gap-4">
-        <a href="#work" class="px-6 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 btn-hover">View Projects</a>
-        <a href="#contact" class="px-6 py-3 border border-cyan-600 text-cyan-600 rounded-lg hover:bg-cyan-700 hover:text-white btn-hover">Hire Me</a>
+      <nav id="nav-links"
+        class="hidden md:flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 font-semibold absolute md:static left-0 top-full w-full md:w-auto bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg md:backdrop-blur-none shadow-md md:shadow-none px-6 py-4 md:p-0 transition-all duration-300 ease-in-out transform origin-top scale-y-0 md:scale-y-100 md:opacity-100">
+        <a href="#home" class="hover:text-cyan-800 dark:hover:text-cyan-200">Home</a>
+        <a href="#about" class="hover:text-cyan-800 dark:hover:text-cyan-200">About</a>
+        <a href="#skills" class="hover:text-cyan-800 dark:hover:text-cyan-200">Skills</a>
+        <a href="#projects" class="hover:text-cyan-800 dark:hover:text-cyan-200">Projects</a>
+        <a href="#experience" class="hover:text-cyan-800 dark:hover:text-cyan-200">Experience</a>
+        <a href="#education" class="hover:text-cyan-800 dark:hover:text-cyan-200">Education</a>
+        <a href="#contact" class="hover:text-cyan-800 dark:hover:text-cyan-200">Contact</a>
+        <button id="theme" class="mt-2 md:mt-0 px-4 py-2 rounded-lg bg-cyan-600 text-white font-medium hover:bg-cyan-700 transition">Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="fade-slide min-h-screen flex flex-col justify-center items-center text-center">
+    <h1 class="text-5xl md:text-6xl font-bold text-cyan-600 dark:text-cyan-400 fade-up">Hi, I'm Sherin XK</h1>
+    <p class="mt-4 text-lg max-w-xl fade-up">Frontend Engineer passionate about crafting smooth, responsive, and beautiful digital experiences.</p>
+    <a href="#projects" class="mt-8 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all fade-up">View My Work</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-slide py-20 px-6 text-center max-w-4xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-4 text-cyan-600 dark:text-cyan-400">About Me</h2>
+    <p>I'm a dedicated developer focused on building performant and delightful web interfaces using modern technologies like React, Tailwind, and Framer Motion.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="fade-slide py-20 bg-cyan-100 dark:bg-gray-800">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold mb-4 text-cyan-600 dark:text-cyan-400">Skills</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-lg font-medium">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span>
+        <span>TailwindCSS</span><span>Node.js</span><span>MongoDB</span><span>Git</span>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="fade-slide min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-100 dark:bg-gray-900">
-    <div class="max-w-5xl text-center">
-      <h2 class="text-4xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">About Me</h2>
-      <p class="text-lg text-gray-800 dark:text-gray-200 leading-relaxed">
-        I’m an enthusiastic Full Stack Developer skilled in React.js, TypeScript, Node.js, and Express.js with strong debugging and database management skills. 
-        Experienced in building responsive web apps, integrating APIs, and implementing CI/CD workflows in Agile teams.
-      </p>
-      <p class="text-lg mt-6 text-gray-700 dark:text-gray-300">
-        My goal is to grow as a Frontend / Full Stack Developer and contribute to efficient, user-friendly digital solutions.
-      </p>
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-slide py-20 px-6 text-center max-w-5xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-4 text-cyan-600 dark:text-cyan-400">Projects</h2>
+    <p>Check out some of my latest work below.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="fade-slide py-20 bg-cyan-100 dark:bg-gray-800">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold mb-4 text-cyan-600 dark:text-cyan-400">Experience</h2>
+      <p>Worked on full-stack projects and optimized frontend workflows with best UI/UX practices.</p>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="fade-slide min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-50 dark:bg-gray-800">
-    <div class="max-w-5xl text-center">
-      <h2 class="text-4xl font-bold mb-8 text-cyan-700 dark:text-cyan-300">Technical Skills</h2>
-      <div class="grid md:grid-cols-3 gap-6 text-gray-900 dark:text-gray-100">
-        <div class="p-6 rounded-lg shadow bg-white dark:bg-gray-900">
-          <h3 class="font-bold text-cyan-600 mb-3">Frontend</h3>
-          <p>React.js, TypeScript, HTML5, Tailwind CSS</p>
-        </div>
-        <div class="p-6 rounded-lg shadow bg-white dark:bg-gray-900">
-          <h3 class="font-bold text-cyan-600 mb-3">Backend</h3>
-          <p>Node.js, Express.js, REST APIs, CI/CD Pipelines</p>
-        </div>
-        <div class="p-6 rounded-lg shadow bg-white dark:bg-gray-900">
-          <h3 class="font-bold text-cyan-600 mb-3">Database & Tools</h3>
-          <p>MySQL, PostgreSQL, Git, Bitbucket, Jira, Power BI</p>
-        </div>
-      </div>
+  <!-- EDUCATION -->
+  <section id="education" class="fade-slide py-20 px-6 text-center max-w-4xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-4 text-cyan-600 dark:text-cyan-400">Education</h2>
+    <p>B.Tech in Computer Science & Engineering. Strong foundation in frontend technologies and web design.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="fade-slide py-20 bg-cyan-100 dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-semibold mb-4 text-cyan-600 dark:text-cyan-400">Contact</h2>
+      <p>Let’s build something great together!</p>
+      <a href="mailto:sherinxk@example.com" class="inline-block mt-6 bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition">Email Me</a>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="work" class="fade-slide min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-100 dark:bg-gray-900">
-    <div class="max-w-6xl text-center">
-      <h2 class="text-4xl font-bold mb-12 text-cyan-700 dark:text-cyan-300">Projects</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-6">
-          <div class="p-6 rounded-2xl shadow-lg bg-white dark:bg-gray-800 hover:scale-105 transition">
-            <h3 class="text-2xl font-semibold text-cyan-700 dark:text-cyan-300 mb-2">Portfolio Web App</h3>
-            <p>Built and deployed a personal portfolio using React and Tailwind CSS showcasing responsive UI and component-based architecture.</p>
-          </div>
-          <div class="p-6 rounded-2xl shadow-lg bg-white dark:bg-gray-800 hover:scale-105 transition">
-            <h3 class="text-2xl font-semibold text-cyan-700 dark:text-cyan-300 mb-2">User Dashboard System</h3>
-            <p>Full-stack CRUD app using React, Express, and PostgreSQL with authentication and reusable modular components.</p>
-          </div>
-        </div>
-      </div>
-      <a href="https://github.com/Sherin721" target="_blank"
-        class="inline-block px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-lg shadow-md transition mt-6 btn-hover">
-        Visit My GitHub
-      </a>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="fade-slide min-h-screen bg-cyan-50 dark:bg-gray-900 py-20 px-6">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-8 text-cyan-700 dark:text-cyan-300">Experience</h2>
-      <div class="space-y-8 text-left">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-2xl font-semibold text-cyan-600">Software Engineer Intern</h3>
-          <p class="text-gray-700 dark:text-gray-300">Expressare Technologies Pvt. Ltd.</p>
-          <ul class="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300">
-            <li>Developed full-stack web apps using React & Express.</li>
-            <li>Reduced bugs by 15% through debugging and code reviews.</li>
-            <li>Collaborated in Agile sprints and team-based workflows.</li>
-          </ul>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-2xl font-semibold text-cyan-600">Data Analyst Trainee</h3>
-          <p class="text-gray-700 dark:text-gray-300">JHF IT Services</p>
-          <ul class="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300">
-            <li>Delivered accurate datasets and client-ready reports.</li>
-            <li>Enhanced workflow efficiency by proactive data validation.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section id="education" class="fade-slide min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-100 dark:bg-gray-900">
-    <div class="max-w-4xl w-full text-center">
-      <h2 class="text-4xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">Education</h2>
-      <table class="min-w-full border border-cyan-300 text-center text-sm sm:text-base rounded-lg overflow-x-auto">
-        <thead class="bg-cyan-500 text-white">
-          <tr>
-            <th class="px-3 sm:px-6 py-3 border border-cyan-300">Course</th>
-            <th class="px-3 sm:px-6 py-3 border border-cyan-300">Institution</th>
-            <th class="px-3 sm:px-6 py-3 border border-cyan-300">Year</th>
-            <th class="px-3 sm:px-6 py-3 border border-cyan-300">Result</th>
-          </tr>
-        </thead>
-        <tbody class="text-gray-900 dark:text-gray-100">
-          <tr class="bg-cyan-50 dark:bg-gray-800">
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">B.Sc. Computer Science</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">Nesamony Memorial Christian College</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">2021–2024</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">CGPA: 8.5</td>
-          </tr>
-          <tr class="bg-cyan-100 dark:bg-gray-700">
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">HSC</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">State Board</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">2020–2021</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">88.5%</td>
-          </tr>
-          <tr class="bg-cyan-50 dark:bg-gray-800">
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">SSLC</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">State Board</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">2018–2019</td>
-            <td class="px-3 sm:px-6 py-3 border border-cyan-300">90.6%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="fade-slide min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-50 dark:bg-cyan-900">
-    <div class="max-w-5xl w-full">
-      <h2 class="text-4xl font-bold mb-8 text-center text-cyan-600 dark:text-cyan-300">Contact Me</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        <div class="space-y-4 text-gray-900 dark:text-gray-100">
-          <p><span class="font-semibold text-cyan-600 dark:text-cyan-400">Address:</span> Marthandam, Kanyakumari, Tamil Nadu</p>
-          <p><span class="font-semibold text-cyan-600 dark:text-cyan-400">Phone:</span> +91 94878 45908</p>
-          <p><span class="font-semibold text-cyan-600 dark:text-cyan-400">Email:</span> <a href="mailto:sherinxavier004@gmail.com" class="hover:underline">sherinxavier004@gmail.com</a></p>
-          <p><a href="https://linkedin.com/in/sherin-xavier" target="_blank" class="text-cyan-600 dark:text-cyan-400 hover:underline">LinkedIn</a></p>
-          <p><a href="https://github.com/Sherin721" target="_blank" class="text-cyan-600 dark:text-cyan-400 hover:underline">GitHub</a></p>
-        </div>
-        <div class="h-96 rounded-lg overflow-hidden shadow-lg">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.2078123982783!2d77.21401457042879!3d8.28210528203052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0455005d2a8095%3A0x93a6afe53b22213f!2sMavilai!5e0!3m2!1sen!2sin!4v1756647140272!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resume -->
-  <section id="resume" class="fade-slide min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-cyan-100 dark:bg-gray-800">
-    <h2 class="text-4xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">Resume</h2>
-    <p class="text-lg mb-4 text-gray-700 dark:text-gray-300">Download my resume as DOCX below:</p>
-    <a href="resume.docx" download class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg shadow-md transition font-semibold btn-hover">
-      Download Resume
-    </a>
-  </section>
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="bg-cyan-600 dark:bg-gray-800 text-white text-center py-4">
     <p>© 2025 Sherin XK. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
+  </div>
+
   <script>
   // 🌗 Dark mode toggle
   const toggle = document.getElementById('theme');
   toggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
     toggle.textContent = document.documentElement.classList.contains('dark') ? 'Light' : 'Dark';
+    toggle.classList.add('animate');
+    setTimeout(() => toggle.classList.remove('animate'), 300);
   });
 
-  // 🌟 Navbar + Hero fade-in on page load
-  window.addEventListener('load', () => {
-    document.getElementById('navbar').classList.add('visible');
-  });
-
-  // 📱 Mobile menu toggle
+  // 📱 Navbar hamburger
   const menuBtn = document.getElementById('menu-btn');
   const navLinks = document.getElementById('nav-links');
   const menuIcon = document.getElementById('menu-icon');
@@ -278,40 +200,35 @@
   if (menuBtn) {
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('open');
-
-      // Animate hamburger to "X"
-      if (navLinks.classList.contains('open')) {
-        menuIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`;
-      } else {
-        menuIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
-      }
+      menuIcon.innerHTML = navLinks.classList.contains('open')
+        ? `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`
+        : `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
     });
   }
 
-  // 💫 Navbar scroll effect (shrink + fade)
+  // 💫 Navbar scroll shrink
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
-      if (document.documentElement.classList.contains('dark')) {
-        navbar.classList.add('dark');
-      }
+      if (document.documentElement.classList.contains('dark')) navbar.classList.add('dark');
     } else {
       navbar.classList.remove('scrolled', 'dark');
     }
   });
 
-  // ✨ Fade-slide sections when visible
+  // ✨ Fade-slide observer
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.2 });
-
   document.querySelectorAll('.fade-slide').forEach(sec => observer.observe(sec));
-</script>
 
-
+  // 🌊 Page load animation
+  window.addEventListener('DOMContentLoaded', () => {
+    const page = document.getElementById('page-transition');
+    setTimeout(() => page.classList.add('visible'), 50);
+  });
+  </script>
 </body>
 </html>
