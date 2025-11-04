@@ -4,67 +4,97 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sherin XK - Frontend Engineer</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  (function() {
-    emailjs.init({ publicKey: "4Ncgq7w9802P7X7f3" }); 
-  })();
-</script>
+
+  <script>
+    (function() {
+      emailjs.init({ publicKey: "4Ncgq7w9802P7X7f3" });
+    })();
+  </script>
 
   <style>
     html, body {
-  margin: 0;
-  padding: 0;
-}
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
-    /* page transition + smooth theme */
     html { transition: background-color 0.45s ease, color 0.45s ease; }
-    body { padding-top: 80px; scroll-behavior: smooth; }
-    /* NAVBAR scroll/shrink */
-    
-#navbar {
-  margin-top: 0;
-  padding-top: 0.5rem;
-  transition: all 0.35s ease;
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-}
-.dark #navbar {
-  background-color: rgba(17, 24, 39, 0.85);
-}
+    body { padding-top: 72px; } /* reduced from 80px to fix extra gap */
 
-#navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-#navbar.scrolled.dark {
-  background-color: rgba(17, 24, 39, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-}
+    /* ===== NAVBAR ===== */
+    #navbar {
+      padding-top: 0.5rem;
+      transition: all 0.35s ease;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+    }
 
+    .dark #navbar {
+      background-color: rgba(17, 24, 39, 0.85);
+    }
 
-    /* Mobile nav animation */
-    #nav-links { transform-origin: top; transition: transform 0.28s ease, opacity 0.28s ease; }
-    #nav-links.open { display:flex !important; transform: scaleY(1); opacity:1; }
+    #navbar.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
 
-    /* theme button pop */
-    #theme.animate { transform: scale(1.12); transition: transform 0.28s ease; }
+    #navbar.scrolled.dark {
+      background-color: rgba(17, 24, 39, 0.95);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
 
-    /* page fade-slide wrapper */
-    #page-transition { opacity:0; transform: translateY(16px); transition: opacity 0.45s ease, transform 0.45s ease; }
-    #page-transition.visible { opacity:1; transform: translateY(0); }
+    /* ===== Mobile nav animation ===== */
+    #nav-links {
+      transform-origin: top;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
 
-    /* Fade-slide sections (smooth, stagger feel) */
-    .fade-slide { opacity:0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.22,1,.36,1); }
-    .fade-slide.visible { opacity:1; transform: translateY(0); }
+    #nav-links.open {
+      display: flex !important;
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    /* ===== theme button pop ===== */
+    #theme.animate {
+      transform: scale(1.12);
+      transition: transform 0.28s ease;
+    }
+
+    /* ===== page transition fade ===== */
+    #page-transition {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    #page-transition.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== fade-slide animation ===== */
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.22,1,.36,1);
+    }
+
+    .fade-slide.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .fade-slide:nth-child(2){ transition-delay:0.08s; }
     .fade-slide:nth-child(3){ transition-delay:0.14s; }
     .fade-slide:nth-child(4){ transition-delay:0.20s; }
     .fade-slide:nth-child(5){ transition-delay:0.26s; }
 
-    /* Hero background — scrolls normally (no fixed) */
+    /* ===== Hero ===== */
     .hero {
       background: url('landscape.jpg') center / cover no-repeat;
       height: 100vh;
@@ -73,65 +103,79 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      color: #0f172a;
+      color:#0f172a;
+      margin-top: 0; /* fixes extra gap */
     }
-    /* dark-mode hero text color change and overlay for readability */
-    .hero::after{
+
+    .hero::after {
       content:"";
       position:absolute; inset:0;
       background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.18));
       mix-blend-mode: multiply;
       z-index:0;
     }
-    .hero .hero-inner{ position:relative; z-index:1; color: white; }
 
-    /* ensure hero text contrasts even for light backgrounds */
-    .hero .overlay-text { color: #FFFFFF; text-shadow: 0 6px 20px rgba(2,6,23,0.45); }
+    .hero .hero-inner {
+      position:relative;
+      z-index:1;
+      color:white;
+    }
 
-    /* small helpers */
-    .btn-primary { background-color:#06b6d4; color:white; padding:.65rem 1.1rem; border-radius:.6rem; display:inline-block; }
-    .btn-primary:hover { background-color:#0891b2; }
+    .hero .overlay-text {
+      color:#FFFFFF;
+      text-shadow:0 6px 20px rgba(2,6,23,0.45);
+    }
 
-    /* responsive tweaks */
-    /* === Mobile nav layout fix === */
-@media (max-width: 768px) {
-  #nav-links {
-    flex-direction: column !important;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.95);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-radius: 0 0 1rem 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transform: scaleY(0);
-    opacity: 0;
-    display: none;
-  }
+    .btn-primary {
+      background-color:#06b6d4;
+      color:white;
+      padding:.65rem 1.1rem;
+      border-radius:.6rem;
+      display:inline-block;
+    }
 
-  #nav-links.open {
-    display: flex !important;
-    transform: scaleY(1);
-    opacity: 1;
-  }
+    .btn-primary:hover {
+      background-color:#0891b2;
+    }
 
-  .dark #nav-links {
-    background: rgba(17, 24, 39, 0.95);
-  }
-}
+    /* ===== Mobile nav layout ===== */
+    @media (max-width: 768px) {
+      #nav-links {
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.95);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-radius: 0 0 1rem 1rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transform: scaleY(0);
+        opacity: 0;
+        display: none;
+      }
 
+      #nav-links.open {
+        display: flex !important;
+        transform: scaleY(1);
+        opacity: 1;
+      }
+
+      .dark #nav-links {
+        background: rgba(17, 24, 39, 0.95);
+      }
+    }
   </style>
 </head>
 
 <body class="bg-cyan-50 text-black dark:bg-gray-900 dark:text-gray-100">
   <div id="page-transition">
-
-    <!-- NAVBAR -->
-<header id="navbar" class="fixed w-full z-50 top-0 left-0">
+    
+    <!-- ===== NAVBAR ===== -->
+    <header id="navbar" class="fixed w-full z-50 top-0 left-0">
       <div class="container mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <img src="logo.jpeg" alt="logo" class="h-8 w-8 rounded" />
@@ -146,7 +190,7 @@
         </button>
 
         <nav id="nav-links" class="hidden md:flex md:items-center md:space-x-6 absolute md:static left-0 top-full w-full md:w-auto bg-white/90 dark:bg-gray-800/90 md:bg-transparent md:backdrop-blur-none px-6 py-4 md:p-0 md:shadow-none shadow-md">
-<a href="#home" class="block md:inline-block py-1 md:py-0 text-gray-900 dark:text-gray-100 hover:text-cyan-700 dark:hover:text-cyan-300">Home</a>
+          <a href="#home" class="block md:inline-block py-1 md:py-0 text-gray-900 dark:text-gray-100 hover:text-cyan-700 dark:hover:text-cyan-300">Home</a>
           <a href="#about" class="block md:inline-block py-1 md:py-0 hover:text-cyan-700 dark:hover:text-cyan-200">About</a>
           <a href="#skills" class="block md:inline-block py-1 md:py-0 hover:text-cyan-700 dark:hover:text-cyan-200">Skills</a>
           <a href="#work" class="block md:inline-block py-1 md:py-0 hover:text-cyan-700 dark:hover:text-cyan-200">Projects</a>
@@ -154,16 +198,17 @@
           <a href="#education" class="block md:inline-block py-1 md:py-0 hover:text-cyan-700 dark:hover:text-cyan-200">Education</a>
           <a href="#resume" class="block md:inline-block py-1 md:py-0 hover:text-cyan-700 dark:hover:text-cyan-200">Resume</a>
           <a href="#contact" class="block md:inline-block py-1 md:py-0 hover:text-cyan-700 dark:hover:text-cyan-200">Contact</a>
-
           <button id="theme" class="ml-0 md:ml-4 mt-3 md:mt-0 px-4 py-2 rounded-lg bg-cyan-600 text-white">Dark</button>
         </nav>
       </div>
     </header>
 
-    <!-- HOME / HERO -->
+     <!-- HOME / HERO -->
     <section id="home" class="hero fade-slide">
       <div class="hero-inner px-6">
-        <h1 class="text-4xl md:text-6xl font-extrabold overlay-text mb-4">Hi, I'm Sherin XK</h1>
+<h1 class="text-4xl md:text-6xl font-extrabold overlay-text mb-4 text-gray-900 dark:text-cyan-400">
+  Hi, I'm Sherin XK
+</h1>
         <p class="text-lg md:text-xl overlay-text mb-6">Frontend Engineer (React · JavaScript) — building beautiful, responsive apps.</p>
         <a href="#work" class="btn-primary">View Projects</a>
       </div>
@@ -365,101 +410,92 @@
       <p>© 2025 Sherin XK. All rights reserved.</p>
     </footer>
 
-  </div> <!-- end page-transition -->
+  </div>
 
   <script>
-  // ===== Dark mode toggle + button pop
-  const themeBtn = document.getElementById('theme');
-  const navbar = document.getElementById('navbar'); // ✅ keep only this one
+    // ===== Dark mode toggle =====
+    const themeBtn = document.getElementById('theme');
+    const navbar = document.getElementById('navbar');
 
-  themeBtn.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-    themeBtn.textContent = document.documentElement.classList.contains('dark') ? 'Light' : 'Dark';
-    themeBtn.classList.add('animate');
-    setTimeout(() => themeBtn.classList.remove('animate'), 300);
-
-    // ✅ update navbar color on theme switch
-    navbar.classList.toggle('dark', document.documentElement.classList.contains('dark'));
-  });
-
-  // ===== Navbar fade-in on load
-  window.addEventListener('load', () => {
-    navbar.classList.add('visible');
-  });
-
-  // ===== Mobile menu toggle
-  const menuBtn = document.getElementById('menu-btn');
-  const navLinks = document.getElementById('nav-links');
-  const menuIcon = document.getElementById('menu-icon');
-
-  if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      menuIcon.innerHTML = navLinks.classList.contains('open')
-        ? `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`
-        : `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
+    themeBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      themeBtn.textContent = document.documentElement.classList.contains('dark') ? 'Light' : 'Dark';
+      themeBtn.classList.add('animate');
+      setTimeout(() => themeBtn.classList.remove('animate'), 300);
+      navbar.classList.toggle('dark', document.documentElement.classList.contains('dark'));
     });
-  }
 
-  // ===== Navbar scroll shrink + hide style when scrolling down lightly
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-    lastScroll = window.scrollY;
-  });
+    // ===== Navbar fade-in =====
+    window.addEventListener('load', () => navbar.classList.add('visible'));
 
-  // ===== Fade-slide IntersectionObserver
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.18 });
+    // ===== Mobile menu toggle =====
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    const menuIcon = document.getElementById('menu-icon');
 
-  document.querySelectorAll('.fade-slide').forEach(el => observer.observe(el));
-
-  // ===== Page entrance animation
-  window.addEventListener('DOMContentLoaded', () => {
-    const page = document.getElementById('page-transition');
-    setTimeout(() => page.classList.add('visible'), 60);
-  });
-
-  // ===== Contact form via EmailJS =====
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if (!name || !email) {
-      status.textContent = '⚠️ Please enter name and email.';
-      status.style.color = '#d97706';
-      return;
-    }
-
-    const params = { name, email, phone, message };
-
-    emailjs.send("service_to6cfwe", "template_uo5uisw", params)
-      .then(() => {
-        status.textContent = "✅ Message sent successfully!";
-        status.style.color = "#059669";
-        form.reset();
-      })
-      .catch((error) => {
-        console.error(error);
-        status.textContent = "❌ Failed to send. Try again later.";
-        status.style.color = "#dc2626";
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        menuIcon.innerHTML = navLinks.classList.contains('open')
+          ? `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`
+          : `<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />`;
       });
-  });
-</script>
+    }
 
+    // ===== Navbar scroll shrink =====
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // ===== Fade-slide IntersectionObserver =====
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.fade-slide').forEach(el => observer.observe(el));
+
+    // ===== Page transition =====
+    window.addEventListener('DOMContentLoaded', () => {
+      const page = document.getElementById('page-transition');
+      setTimeout(() => page.classList.add('visible'), 60);
+    });
+
+    // ===== Contact form via EmailJS =====
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email) {
+          status.textContent = '⚠️ Please enter name and email.';
+          status.style.color = '#d97706';
+          return;
+        }
+
+        const params = { name, email, phone, message };
+
+        emailjs.send("service_to6cfwe", "template_uo5uisw", params)
+          .then(() => {
+            status.textContent = "✅ Message sent successfully!";
+            status.style.color = "#059669";
+            form.reset();
+          })
+          .catch(() => {
+            status.textContent = "❌ Failed to send. Try again later.";
+            status.style.color = "#dc2626";
+          });
+      });
+    }
+  </script>
 </body>
 </html>
